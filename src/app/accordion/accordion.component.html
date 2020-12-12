@@ -1,0 +1,32 @@
+<ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1">
+  <ngb-panel id="custom-panel-1">
+    <ng-template ngbPanelHeader let-opened="opened">
+      <div class="d-flex align-items-center justify-content-between">
+        <h5 class="m-0">First panel - {{ opened ? "opened" : "collapsed" }}</h5>
+        <div class="button-group">
+          <button ngbPanelToggle class="btn p-0 minimize">-</button>
+          <div ngbDropdown placement="top-right">
+            <div
+              class="menu"
+              placement="left"
+              id="dropdownBasic1"
+              ngbDropdownToggle
+            >
+              <div class="dots"></div>
+              <div class="dots"></div>
+              <div class="dots"></div>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>Action - 1</button>
+                <button ngbDropdownItem>Another Action</button>
+                <button ngbDropdownItem>Something else is here</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <ng-content></ng-content>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

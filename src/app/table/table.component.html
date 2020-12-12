@@ -1,0 +1,74 @@
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="employees"
+  [masterDetail]="{ enabled: true, template: 'detail' }"
+  keyExpr="ID"
+  [showBorders]="true"
+>
+  <dxi-column dataField="Prefix" [width]="70" caption="Title"></dxi-column>
+  <dxi-column dataField="FirstName"></dxi-column>
+  <dxi-column dataField="LastName"></dxi-column>
+  <dxi-column dataField="Position" [width]="170"></dxi-column>
+  <dxi-column dataField="State" [width]="125"></dxi-column>
+  <dxi-column dataField="total" [width]="125"></dxi-column>
+  <dxi-column dataField="BirthDate" dataType="date"></dxi-column>
+  <dxi-column
+    dataField="total"
+    [allowFiltering]="false"
+    [allowSorting]="false"
+    cellTemplate="cellTemplate"
+  ></dxi-column>
+  <div *dxTemplate="let data of 'cellTemplate'">
+    <dx-progress-bar
+      #progressBar
+      width="90%"
+      [showStatus]="false"
+      [min]="0"
+      [max]="data.value + 1000"
+      [value]="data.value"
+    >
+    </dx-progress-bar>
+  </div>
+
+  <div *dxTemplate="let employee of 'detail'">
+    <dx-data-grid
+      [dataSource]="getTasks(employee.key)"
+      keyExpr="employee.key"
+      [masterDetail]="{ enabled: true, template: 'detailed' }"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      (onSaving)="onSaving($event)"
+      (onRowUpdated)="onRowUpdated($event)"
+    >
+      <dxi-column dataField="Subject"></dxi-column>
+      <dxi-column dataField="StartDate" dataType="date"></dxi-column>
+      <dxi-column dataField="DueDate" dataType="date"></dxi-column>
+      <dxi-column dataField="amount" dataType="number"></dxi-column>
+      <dxi-column dataField="Priority"></dxi-column>
+      <dxi-column
+        dataType="boolean"
+        caption="Completed"
+        [calculateCellValue]="completedValue"
+      ></dxi-column>
+      <dxo-editing mode="cell" [allowUpdating]="true"> </dxo-editing>
+      <div *dxTemplate="let employee1 of 'detailed'">
+        <dx-data-grid
+          [dataSource]="getDeepData(employee1.key)"
+          [showBorders]="true"
+          [columnAutoWidth]="true"
+          (onSaving)="onSaving($event)"
+          (onRowUpdated)="onRowUpdated($event)"
+        >
+          <dxi-column dataField="Subject"></dxi-column>
+          <dxi-column dataField="StartDate" dataType="date"></dxi-column>
+          <dxi-column dataField="DueDate" dataType="date"></dxi-column>
+          <dxi-column dataField="amount" dataType="number"></dxi-column>
+          <dxi-column dataField="Priority"></dxi-column>
+          <dxo-editing mode="cell" [allowUpdating]="true"> </dxo-editing>
+        </dx-data-grid>
+      </div>
+    </dx-data-grid>
+  </div>
+
+
+</dx-data-grid>

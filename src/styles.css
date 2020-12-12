@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin : 0;
+    background: #EEF2F7;
+    overflow-x: hidden;
+}
+
+.box-shadow {
+    -webkit-box-shadow: 3px 5px 6px #ccc;  
+    -moz-box-shadow:    3px 5px 6px #ccc;  
+    box-shadow:         3px 5px 6px #ccc;  
+  }

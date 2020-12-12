@@ -1,0 +1,36 @@
+<div class="dashboard-container container-fluid">
+  <div class="header">
+    <div class="title">AbbieLink</div>
+  </div>
+  <div class="table box-shadow">
+    <div class="table-header">Table</div>
+    <div class="content">
+      <app-table></app-table>
+    </div>
+  </div>
+  <div class="fullWidth box-shadow"></div>
+  <div class="section-divider row row-cols-2">
+    <div class="col dragOver">
+      <div class="mb-20 draggable box-shadow" draggable="true">
+        <app-accordion>
+          <app-table></app-table>
+        </app-accordion>
+      </div>
+      <div class="mb-20 draggable box-shadow" draggable="true">
+        <app-accordion>
+          <app-chart></app-chart>
+        </app-accordion>
+      </div>
+    </div>
+    <div class="col dragOver">
+      <div class="mb-20 draggable box-shadow" draggable="true">
+        <app-accordion>
+            <app-piechart></app-piechart>
+        </app-accordion>
+      </div>
+      <div class="mb-20 draggable box-shadow" draggable="true">
+        <app-accordion><p>content</p></app-accordion>
+      </div>
+    </div>
+  </div>
+</div>
